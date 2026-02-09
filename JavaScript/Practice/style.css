@@ -1,0 +1,12 @@
+#myid{
+    background-color: aqua;
+    font-size: medium;
+    font-style: italic;
+}
+.myclass{
+    background-color: brown;
+    color: white;
+}
+.newclass{
+    background-color: blueviolet;
+}

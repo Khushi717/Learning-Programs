@@ -1,0 +1,13 @@
+let veggies=["potato","cabbage","tomato","carrot","lemon"];
+let heroes=[1,2,3,4,5,6,7,8];
+veggies.push("onion");
+console.log(veggies);
+let del=veggies.pop();
+console.log(del);
+let str=veggies.toString();
+console.log(str);
+console.log(veggies);
+con=veggies.concat(heroes);
+console.log(con);
+console.log(heroes.slice(1,4));
+console.log(heroes.splice(2,1,45));

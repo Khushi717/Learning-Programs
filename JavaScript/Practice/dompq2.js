@@ -1,0 +1,24 @@
+let para=document.querySelector("#myid");
+let n=document.querySelectorAll(".box");
+let div=document.querySelector("div");
+// console.log(div.getAttribute("id"));
+div.setAttribute("myid","newid");
+console.log(div.getAttribute("myid"));
+div.style.backgroundColor="pink";
+div.style.visibility="hidden";
+div.innerHTML="<i>hello<\i>";
+div.remove();
+//inserting element
+let btn=document.createElement("button");
+btn.innerText="click me";
+div.remove(btn);
+let newbtn=document.createElement("button");
+newbtn.innerText="Click me";
+newbtn.style.backgroundColor="red";
+let b=document.querySelector("body");
+b.prepend(newbtn);
+// let para=document.querySelector("p");
+console.log(para.getAttribute("class"));
+let newclass=document.createElement("class");
+para.setAttribute("class","newclass");
+console.log(para.getAttribute("class"));
