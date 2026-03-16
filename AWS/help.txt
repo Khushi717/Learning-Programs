@@ -1,0 +1,6 @@
+ssh -i kp.pem ubuntu@public_address
+sudo apt update
+sudo systemctl status apache2
+ cd /var/www/html
+ sudo snap install aws-cli --classic
+ aws s3 ls
