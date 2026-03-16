@@ -7,11 +7,3 @@ function summ(...numbers){
     return sum;
 }
 console.log(summ(10,20,30));
-
-
-
-const num=[1,2,3];
-function sum(a,b,c){
-    return a+b+c;
-}
-console.log(sum(...num));

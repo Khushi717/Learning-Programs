@@ -1,11 +1,11 @@
-// function asyncfunc1(){
-//     return new Promise((resolve,reject)=>{
-//         setTimeout(()=>{
-//            console.log("data1");
-//             resolve("success");
-//         },5000);
-//     });
-// };
+function asyncfunc1(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+           console.log("data1");
+            resolve("success");
+        },5000);
+    });
+};
 
 // function asyncfunc2(){
 //     return new Promise((resolve,reject)=>{
@@ -16,7 +16,7 @@
 //     });
 // };
 // //promise chaining 
-// console.log("fetching data1...");
+console.log("fetching data1...");
 // let p1=asyncfunc1();
 // p1.then((res)=>{
 //     console.log("done");

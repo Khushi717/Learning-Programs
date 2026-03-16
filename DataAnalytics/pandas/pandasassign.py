@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 # Q8. DataFrame Creation
 # Create a Pandas DataFrame of at least four countries with the
 # following details:
@@ -7,8 +8,8 @@ import pandas as pd
 # The country name should be the index.
 
 data={
-    "population":[23,45,56,90],
-    "capital":["New Delhi","Berlin","Paris","Ghaziabad"]
+    "population":[np.nan,45,56,90],
+    "capital":[np.nan,"Berlin","Paris","Ghaziabad"]
 }
 
 df=pd.DataFrame(data,index=["India","Austrailia","America","Nepal"])

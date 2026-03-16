@@ -1,9 +1,10 @@
+#spam detection with svm
 #Titanic dataset
 import pandas as pd # for data handling
 import seaborn as sns  # provides the Titanic dataset
 from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, classification_report
 from sklearn.preprocessing import StandardScaler
 
 df=sns.load_dataset("titanic")
@@ -20,7 +21,7 @@ print(df.isnull().sum())
 
 
 # One-hot encode NOMINAL columns
-df = pd.get_dummies(df, columns=["sex", "adult_male","embarked", "who", "embark_town","alive"], drop_first=True, dtype=int)
+df = pd.get_dummies(df, columns=["sex", "adult_male","embarked", "who", "embark_town","class"], drop_first=True, dtype=int)
 
 # # Convert boolean to int
 df["alone"] = df["alone"].astype(int)
@@ -45,11 +46,12 @@ df = df[
     (df["fare"] >= lower["fare"]) & (df["fare"] <= upper["fare"]) &
     (df["age"]  >= lower["age"])  & (df["age"]  <= upper["age"])
 ]
-# to verify if outliers are removed if so then number od rows should decrease 
+# to verify if outliers are removed if so then number of rows should decrease   
 print(df.shape)
 
 #Scaling-making all feature values comparable
 X = df.drop("survived", axis=1)
+X = df.drop("alive", axis=1)
 y = df["survived"]
 
 
@@ -59,19 +61,44 @@ X_train, X_test, y_train, y_test = train_test_split(
     test_size=0.2,
     random_state=42
 )
-#scaling
+#scaling the input and removing outliers so we can predict output
 scaler=StandardScaler()
 X_train=scaler.fit_transform(X_train)
 X_test=scaler.transform(X_test)
 
-# KNN model
-knn = KNeighborsClassifier(n_neighbors=5)
 
-# train
-knn.fit(X_train, y_train)
+# svm_poly = SVC(
+#     kernel="poly",
+#     degree=2,     # amount of bending- how complex the curve is
+#     C=1,          #default strictness- balanced strictness
+#     gamma="scale", #gamma controls the influence of individual data points on the decision boundary.
+#     random_state=42
+# )
 
-# predict
-y_pred = knn.predict(X_test)
 
-# accuracy
-print("Accuracy:", accuracy_score(y_test, y_pred))
+
+# rbf- overfitting
+# svm_rbf = SVC(
+#     kernel="rbf",
+#     C=1,
+#     gamma="scale",
+#     random_state=42
+# )
+
+#Create a Linear SVM model
+svm_linear = SVC(
+     kernel="linear",   # straight line
+     C=1,               # default strictness C = penalty for mistakes
+                         # Low C → allow some errors → wider margin
+                         # High C → strict → narrow margin → may overfit
+    random_state=42
+ )
+ #Train the model
+svm_linear.fit(X_train, y_train)
+
+#Predict on test data
+y_pred_linear = svm_linear.predict(X_test)
+
+# print("Linear SVM Accuracy:", accuracy_score(y_test, y_pred_linear))
+print("Linear SVM Accuracy:", accuracy_score(y_test, y_pred_linear))
+print(classification_report(y_test, y_pred_linear))
